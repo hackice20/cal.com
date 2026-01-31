@@ -342,6 +342,9 @@ export const getPublicEvent = async (
     return {
       ...defaultEvent,
       bookingFields: getBookingFieldsWithSystemFields({ ...defaultEvent, disableBookingTitle }),
+      // Dynamic group events don't have restriction schedules configured
+      restrictionScheduleId: null,
+      useBookerTimezone: false,
       // Clears meta data since we don't want to send this in the public api.
       subsetOfUsers: users.map((user) => ({
         ...user,
